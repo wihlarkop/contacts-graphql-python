@@ -1,0 +1,26 @@
+[project]
+name = "contacts-api-python"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "alembic>=1.14.0",
+    "email-validator>=2.2.0",
+    "fastapi>=0.115.4",
+    "orjson>=3.10.11",
+    "passlib>=1.7.4",
+    "psycopg>=3.2.3",
+    "pydantic>=2.9.2",
+    "pydantic-settings>=2.6.1",
+    "pyjwt>=2.9.0",
+    "sqlalchemy>=2.0.36",
+    "strawberry-graphql>=0.254.0",
+    "uvicorn>=0.32.0",
+]
+
+[dependency-groups]
+dev = [
+    "fastapi-cli>=0.0.5",
+    "ruff>=0.7.2",
+]
