@@ -9,7 +9,7 @@ from strawberry.fastapi import GraphQLRouter
 
 from app.config import settings
 from app.dependencies.context import context_getter
-from app.resolvers.base import Mutation, Query
+from app.resolvers.base import schema
 from app.exceptions.base import create_exception_handler, InternalServerError
 from app.exceptions.token import TokenExpired, TokenInvalid
 from app.exceptions.user import UserAlreadyExists
@@ -21,7 +21,6 @@ app = FastAPI(
     redoc_url=None
 )
 
-schema = strawberry.Schema(query=Query, mutation=Mutation)
 graphql_app = GraphQLRouter(schema=schema, graphql_ide="apollo-sandbox", context_getter=context_getter)
 app.include_router(graphql_app, prefix="/graphql")
 

@@ -17,5 +17,5 @@ contact = Table(
     Column(name="deleted_at", type_=TIMESTAMP(timezone=True), nullable=True),
     Column(name="created_by", type_=String(length=255)),
     Column(name="updated_by", type_=String(length=255)),
-    Column(name="deleted_by", type_=String(length=255)),
+    Column(name="deleted_by", type_=String(length=255))
 )
