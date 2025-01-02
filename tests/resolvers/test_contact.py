@@ -29,6 +29,14 @@ def mock_context(mock_contact_services):
     }
 
 
+async def execute_graphql_operation(operation, context):
+    result = await schema.execute(
+        operation,
+        context_value=context
+    )
+    return result
+
+
 @pytest.mark.asyncio
 async def test_get_contacts_query(mock_context):
     query = """
@@ -44,12 +52,7 @@ async def test_get_contacts_query(mock_context):
             }
         }
     """
-
-    result = await schema.execute(
-        query,
-        context_value=mock_context
-    )
-
+    result = await execute_graphql_operation(query, mock_context)
     assert result.errors is None
     assert len(result.data["contact"]["getContactsByUser"]) == 1
     contact = result.data["contact"]["getContactsByUser"][0]
@@ -57,3 +60,30 @@ async def test_get_contacts_query(mock_context):
     assert contact["lastName"] == "Doe"
     assert contact["email"] == "john@example.com"
     assert contact["phone"] == "1234567890"
+
+
+# @pytest.mark.asyncio
+# async def test_create_contact_mutation(mock_context):
+#     mutation = """
+#         mutation {
+#             createContact(input: {
+#                 firstName: "Jane",
+#                 lastName: "Doe",
+#                 email: "jane@example.com",
+#                 phone: "0987654321"
+#             }) {
+#                 uuid
+#                 firstName
+#                 lastName
+#                 email
+#                 phone
+#             }
+#         }
+#     """
+#     result = await execute_graphql_operation(mutation, mock_context)
+#     assert result.errors is None
+#     contact = result.data["createContact"]
+#     assert contact["firstName"] == "Jane"
+#     assert contact["lastName"] == "Doe"
+#     assert contact["email"] == "jane@example.com"
+#     assert contact["phone"] == "0987654321"

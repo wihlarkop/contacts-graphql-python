@@ -33,7 +33,9 @@ dev = [
 [tool.pytest.ini_options]
 testpaths = [
     "tests",
+    "app"
 ]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
-addopts = "--cov=app --cov-report html"
+addopts = "-s -v --cov=app --cov-report html --ignore-glob=**/__init__.py"
+cache_dir = ".pytest_cache"

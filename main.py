@@ -1,7 +1,6 @@
 import os
 import signal
 
-import strawberry
 import uvicorn
 from fastapi import FastAPI, status
 from fastapi.exceptions import ResponseValidationError
