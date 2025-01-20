@@ -29,17 +29,17 @@ def generate_uuid() -> UUID:
     return uuid4()
 
 
-async def hash_password(password: str) -> str:
-    return pbkdf2_sha256.hash(password)
-
-
-async def verify_password(password: str, hashed_password: str) -> bool:
-    return pbkdf2_sha256.verify(password, hashed_password)
-
-
-async def generate_access_token():
-    pass
-
-
-async def decode_access_token(token: str):
-    pass
+# async def hash_password(password: str) -> str:
+#     return pbkdf2_sha256.hash(password)
+#
+#
+# async def verify_password(password: str, hashed_password: str) -> bool:
+#     return pbkdf2_sha256.verify(password, hashed_password)
+#
+#
+# async def generate_access_token():
+#     pass
+#
+#
+# async def decode_access_token(token: str):
+#     pass

@@ -1,4 +1,4 @@
-from sqlalchemy import insert, select, update
+from sqlalchemy import and_, insert, select, update
 from sqlalchemy.ext.asyncio import AsyncConnection
 from sqlalchemy.sql.operators import eq
 from strawberry.schema.types.base_scalars import UUID
@@ -22,7 +22,10 @@ class ContactRepositories(ContactInterface):
             contact.c.email,
             contact.c.phone,
         ).where(
-            contact.c.deleted_at.is_(None)
+            # and_(
+                contact.c.deleted_at.is_(None),
+                # eq(contact.c.created_by,)
+            # )
         )
 
         result = await self.connection.execute(stmt)
